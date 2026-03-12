@@ -4,6 +4,9 @@
 // Description : Top TB module for Agent Exercise.
 // -----------------------------------------------------------------------------
 
+// TODO - Add includes here!
+`include "avalon_st_if.sv"
+
 module tb ();
 
     //////////////////////////////////////////////////////////////////////////////
@@ -25,7 +28,7 @@ module tb ();
     // TODO - Declare your classes here.
 
     //////////////////////////////////////////////////////////////////////////////
-    // Clock and Reset Toggling.
+    // General processes.
     //////////////////////////////////////////////////////////////////////////////
     // Generate clock.
     initial begin
@@ -38,6 +41,17 @@ module tb ();
         rst_n = 0;
         #20;
         rst_n = 1;
+    end
+
+    // Timeout.
+    initial begin
+        #(10000) $finish;
+    end
+
+    // Waves dump.
+    initial begin
+        $dumpfile("dump.vcd");
+        $dumpvars(0, tb);
     end
 
     //////////////////////////////////////////////////////////////////////////////

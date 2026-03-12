@@ -4,6 +4,9 @@
 // Description : Avalon Streaming Interface class.
 // -----------------------------------------------------------------------------
 
+`ifndef __AVALON_ST_IF
+`define __AVALON_ST_IF
+
 interface avalon_st_if #(int unsigned DATA_WIDTH_IN_BYTES = 4)(input logic clk);
     
     //////////////////////////////////////////////////////////////////////////////
@@ -57,14 +60,14 @@ interface avalon_st_if #(int unsigned DATA_WIDTH_IN_BYTES = 4)(input logic clk);
     //////////////////////////////////////////////////////////////////////////////
     // Master Clocking Block.
     clocking master_cb @(posedge clk);
-        default input #1step output #1ns;
+        default input #1step output #1;
         input  rdy;
         output valid, sop, eop, data, empty;
     endclocking
 
     // Slave Clocking Block.
     clocking slave_cb @(posedge clk);
-        default input #1step output #1ns;
+        default input #1step output #1;
         input  valid, sop, eop, data, empty;
         output rdy;
     endclocking
@@ -92,3 +95,5 @@ interface avalon_st_if #(int unsigned DATA_WIDTH_IN_BYTES = 4)(input logic clk);
         slave_cb.rdy <= 1'b0;
     endfunction
 endinterface
+
+`endif
