@@ -80,15 +80,15 @@ interface avalon_st_if #(int unsigned DATA_WIDTH_IN_BYTES = 4)(input logic clk);
     //////////////////////////////////////////////////////////////////////////////
     // Clears the Master clocking block signals
     function void CLEAR_MASTER_CB();
-        cb_master.valid <= 1'b0;
-        cb_master.sop   <= 1'b0;
-        cb_master.eop   <= 1'b0;
-        cb_master.data  <= '0;
-        cb_master.empty <= '0;
+        master_cb.valid <= 1'b0;
+        master_cb.sop   <= 1'b0;
+        master_cb.eop   <= 1'b0;
+        master_cb.data  <= '0;
+        master_cb.empty <= '0;
     endfunction
 
     // Clears the Slave clocking block signals
     function void CLEAR_SLAVE_CB();
-        cb_slave.rdy <= 1'b0;
+        slave_cb.rdy <= 1'b0;
     endfunction
 endinterface
